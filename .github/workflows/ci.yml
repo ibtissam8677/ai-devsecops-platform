@@ -1,1 +1,23 @@
-name: CI on: push: branches: [main] jobs: validate-k8s: runs-on: ubuntu-latest steps: - name: Checkout code uses: actions/checkout@v4 - name: Set up Python uses: actions/setup-python@v5 with: python-version: '3.x' - name: Install yamllint run: pip install yamllint - name: Lint Kubernetes YAML files run: yamllint k8s/
+name: CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  validate-k8s:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install yamllint
+        run: pip install yamllint
+
+      - name: Lint Kubernetes YAML files
+        run: yamllint k8s/
